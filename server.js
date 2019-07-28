@@ -41,12 +41,18 @@ app.get("/marsMissions", (req, res) => {
 
 // the view(ejs) should display all the data for a single mission
 app.get('/marsMissions/:id', (req, res) => {
-  console.log(req.params, "<--req.params");
-  console.log('marsMissions/:id')
-  res.render("./missions/show.ejs", {
-    mission: marsMissions[req.params.id]
-  });
-})
+  	console.log(req.params.id, "<--req.params");
+  	console.log('./marsMissions/:id')
+  	marsMissions.findById(req.params.id, (err, mission) => {
+  		if(err) {
+  			res.send(err);
+  		} else {
+  			res.render('./models/missions/show.ejs', {
+  				mission: mission
+  			});
+	 	}
+  	});
+});
 
 
 // LISTENER
@@ -54,4 +60,4 @@ app.listen(port, function() {
   console.log('Missions to Mars running on port: ', port);
 })
 
-// module.exports = app;
+module.exports = app;
