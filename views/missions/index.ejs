@@ -9,18 +9,16 @@
 	<div class="missions">
 		
 		<ul>
-
-			<% for(let i = 0; i < marsMissions.length; i++){%>
 				<div>
 
 					<li>
-						<a href=/missions/<%=i%>> <%= marsMissions[i].name%> </a>
+						<%marsMissions.forEach(function(marsMissions, index){%>
+						<a href=/marsMissions/<%=index%>> <%= marsMissions.name%> </a>
+						<%})%>
 					</li>
 
 
 				</div>
-			<%}%>
-
 
 		</ul>
 

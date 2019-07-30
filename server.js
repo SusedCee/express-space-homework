@@ -30,7 +30,7 @@ console.log(marsMissions)
 
 
 // the view(ejs) should display just the names of each mission
-app.get("/marsMissions", (req, res) => {
+app.get("/missions", (req, res) => {
   res.render("./missions/index.ejs", {marsMissions: marsMissions})
 })
 
@@ -39,20 +39,28 @@ app.get("/marsMissions", (req, res) => {
 // SHOW Route
 // send data to 'missions/show.ejs' view(ejs)
 
-// the view(ejs) should display all the data for a single mission
+//the view(ejs) should display all the data for a single mission
 app.get('/marsMissions/:id', (req, res) => {
-  	console.log(req.params.id, "<--req.params");
-  	console.log('./marsMissions/:id')
-  	marsMissions.findById(req.params.id, (err, mission) => {
-  		if(err) {
-  			res.send(err);
-  		} else {
-  			res.render('./models/missions/show.ejs', {
-  				mission: mission
+  	// console.log(req.params, "<--req.params");
+  			res.render('./missions/show.ejs', {
+  				marsMissions: marsMissions[req.params.id],
   			});
-	 	}
-  	});
 });
+
+
+// app.get('/missions/:id', (req, res) => {
+//   	console.log(req.params.id, "<--req.params");
+//   	console.log('./missions/:id')
+//   	marsMissions.findById(req.params.id, (err, mission) => {
+//   		if(err) {
+//   			res.send(err);
+//   		} else {
+//   			res.render('/models/missions/show.ejs', {
+//   				mission: marsMissions
+//   			});
+// 	 	}
+//   	});
+// });
 
 
 // LISTENER
